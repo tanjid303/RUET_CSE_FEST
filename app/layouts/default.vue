@@ -55,82 +55,116 @@
           <div class="flex md:hidden">
             <button
               @click="toggleMobileMenu"
-              class="inline-flex items-center justify-center p-2 rounded-md text-fest-muted hover:text-fest-cyan focus:outline-none z-50"
+              :class="[
+                'hamburger-btn relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 focus:outline-none z-50',
+                isMobileMenuOpen
+                  ? 'border-fest-cyan/40 bg-fest-cyan/10 text-fest-cyan shadow-[0_0_16px_rgba(199,107,37,0.25)]'
+                  : 'border-fest-border/70 bg-white/90 text-fest-muted shadow-sm hover:border-fest-cyan/40 hover:text-fest-cyan'
+              ]"
               aria-label="Toggle Menu"
             >
-              <svg
-                v-if="!isMobileMenuOpen"
-                class="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-              <svg
-                v-else
-                class="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <span class="sr-only">Toggle Menu</span>
+              <span class="hamburger-icon" :class="{ 'is-open': isMobileMenuOpen }">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+              </span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Mobile Navigation Drawer (Absolute positioned overlay for robust mobile experience) -->
-      <transition
-        enter-active-class="transition duration-200 ease-out"
-        enter-from-class="opacity-0 translate-y-[-10px]"
-        enter-to-class="opacity-100 translate-y-0"
-        leave-active-class="transition duration-150 ease-in"
-        leave-from-class="opacity-100 translate-y-0"
-        leave-to-class="opacity-0 translate-y-[-10px]"
-      >
-        <div v-if="isMobileMenuOpen" class="absolute top-full left-0 right-0 md:hidden bg-white/98 backdrop-blur-xl border-b border-fest-border z-40 shadow-card-hover">
-          <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col max-h-[80vh] overflow-y-auto">
-            <NuxtLink
-              v-for="link in navLinks"
-              :key="link.path"
-              :to="link.path"
-              class="block px-4 py-3 rounded-full text-base font-medium text-fest-text hover:text-fest-cyan hover:bg-fest-cyan/5 transition-all"
-              active-class="text-fest-text bg-fest-surface ring-1 ring-fest-border font-semibold"
-              @click="closeMobileMenu"
-            >
-              {{ link.name }}
-            </NuxtLink>
-            <div class="pt-4 pb-2 border-t border-fest-muted/10 flex flex-col space-y-3">
-              <NuxtLink
-                to="/sponsors"
-                class="text-center py-2.5 rounded-md text-fest-text hover:text-fest-cyan text-sm font-semibold uppercase tracking-wider transition-colors"
-                @click="closeMobileMenu"
-              >
-                Sponsor Us
-              </NuxtLink>
-              <NuxtLink
-                to="/register"
-                class="glow-register-button text-center px-4 py-3 rounded-full bg-fest-cyan text-white font-bold text-sm tracking-wide"
-                @click="closeMobileMenu"
-              >
-                Register Now
-              </NuxtLink>
+      <!-- Mobile Navigation Drawer -->
+      <teleport to="body">
+        <transition
+          enter-active-class="mobile-menu-enter-active"
+          enter-from-class="mobile-menu-enter-from"
+          enter-to-class="mobile-menu-enter-to"
+          leave-active-class="mobile-menu-leave-active"
+          leave-from-class="mobile-menu-leave-to"
+          leave-to-class="mobile-menu-enter-from"
+        >
+          <div
+            v-if="isMobileMenuOpen"
+            class="mobile-nav-overlay fixed inset-0 z-[999] md:hidden"
+            @click.self="closeMobileMenu"
+          >
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-[#1A0F05]/80 backdrop-blur-2xl" @click="closeMobileMenu"></div>
+
+            <!-- Drawer Panel -->
+            <div class="mobile-nav-panel absolute inset-x-3 top-4 bottom-4 rounded-3xl overflow-hidden flex flex-col" style="background: linear-gradient(160deg, #FFFDF9 0%, #FBF5EC 60%, #FFF4E0 100%); box-shadow: 0 32px 80px rgba(20,10,2,0.35), 0 0 0 1px rgba(199,107,37,0.15);">
+
+              <!-- Decorative blobs -->
+              <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(199,107,37,0.18) 0%, transparent 70%);"></div>
+              <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(199,107,37,0.10) 0%, transparent 70%);"></div>
+
+              <!-- Header Row -->
+              <div class="relative flex items-center justify-between px-5 pt-5 pb-4 border-b border-[#E8DDD0]/80 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                  <div class="relative w-11 h-11 flex items-center justify-center rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #C76B25 0%, #E8921A 100%); box-shadow: 0 4px 16px rgba(199,107,37,0.4);">
+                    <span class="font-display text-lg font-bold text-white">R</span>
+                  </div>
+                  <div>
+                    <p class="font-mono text-[9px] uppercase tracking-[0.32em] text-fest-muted">Navigate</p>
+                    <p class="text-sm font-bold text-fest-text tracking-wide">RUET CSE FEST 2026</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-[9px] uppercase tracking-widest text-fest-cyan bg-fest-cyan/10 px-2.5 py-1 rounded-full border border-fest-cyan/20">2K26</span>
+                  <button
+                    @click="closeMobileMenu"
+                    class="w-9 h-9 flex items-center justify-center rounded-full border border-[#E8DDD0] bg-white/80 text-fest-muted hover:text-fest-cyan hover:border-fest-cyan/40 transition-all duration-200"
+                    aria-label="Close menu"
+                  >
+                    <svg class="w-4 h-4" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Nav Links -->
+              <div class="relative flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+                <NuxtLink
+                  v-for="(link, i) in navLinks"
+                  :key="link.path"
+                  :to="link.path"
+                  class="mobile-nav-link group flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-200"
+                  :class="[`nav-item-${i}`]"
+                  active-class="mobile-nav-link-active"
+                  @click="closeMobileMenu"
+                >
+                  <span class="nav-link-icon w-9 h-9 flex items-center justify-center rounded-xl text-fest-muted transition-all duration-200 flex-shrink-0" style="background: rgba(35,31,28,0.05);">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" v-html="link.icon"></svg>
+                  </span>
+                  <span class="text-base font-semibold text-fest-text group-hover:text-fest-cyan transition-colors">{{ link.name }}</span>
+                  <svg class="ml-auto w-4 h-4 text-fest-border group-hover:text-fest-cyan/50 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </NuxtLink>
+              </div>
+
+              <!-- Footer CTAs -->
+              <div class="relative px-4 pb-5 pt-3 border-t border-[#E8DDD0]/80 space-y-2.5 flex-shrink-0">
+                <NuxtLink
+                  to="/sponsors"
+                  class="flex items-center justify-center gap-2 w-full rounded-2xl border border-[#E8DDD0] bg-white/70 px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-fest-text hover:border-fest-cyan/40 hover:text-fest-cyan transition-all duration-200"
+                  @click="closeMobileMenu"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Sponsor Us
+                </NuxtLink>
+                <NuxtLink
+                  to="/register"
+                  class="flex items-center justify-center gap-2 w-full rounded-2xl px-4 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-200 hover:-translate-y-0.5"
+                  style="background: linear-gradient(135deg, #C76B25 0%, #E8921A 100%); box-shadow: 0 6px 24px rgba(199,107,37,0.4);"
+                  @click="closeMobileMenu"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
+                  Register Now
+                </NuxtLink>
+              </div>
             </div>
           </div>
-        </div>
-      </transition>
+        </transition>
+      </teleport>
     </header>
 
     <!-- Main Content Area -->
@@ -231,14 +265,14 @@ const isMobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Events', path: '/events' },
-  { name: 'Sponsors', path: '/sponsors' },
-  { name: 'Schedule', path: '/schedule' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'About Us', path: '/about' },
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contact', path: '/contact' }
+  { name: 'Home', path: '/', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+  { name: 'Events', path: '/events', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>' },
+  { name: 'Sponsors', path: '/sponsors', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+  { name: 'Schedule', path: '/schedule', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>' },
+  { name: 'Gallery', path: '/gallery', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>' },
+  { name: 'About Us', path: '/about', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+  { name: 'FAQ', path: '/faq', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+  { name: 'Contact', path: '/contact', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>' }
 ]
 
 const toggleMobileMenu = () => {
@@ -248,6 +282,16 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
 }
+
+watch(() => route.path, closeMobileMenu)
+
+watch(isMobileMenuOpen, (isOpen) => {
+  if (typeof document === 'undefined') {
+    return
+  }
+
+  document.body.style.overflow = isOpen ? 'hidden' : ''
+})
 
 const updateScrollState = () => {
   isScrolled.value = window.scrollY > 12
@@ -277,7 +321,7 @@ onMounted(() => {
   updateScrollState()
 
   window.addEventListener('scroll', updateScrollState, { passive: true })
-  
+
   // Re-initialize observer on route updates
   watch(() => route.path, () => {
     setTimeout(setupIntersectionObserver, 300)
@@ -286,6 +330,9 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', updateScrollState)
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+  }
 })
 </script>
 

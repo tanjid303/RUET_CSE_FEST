@@ -5,11 +5,11 @@
     <div class="absolute top-[5%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-bl from-fest-amber/[0.05] to-transparent blur-[140px] pointer-events-none animate-aurora-amber"></div>
 
     <!-- Hero Section -->
-    <section class="relative z-10 overflow-hidden pt-4 pb-20 md:pt-6 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section class="relative z-10 overflow-hidden pt-2 pb-16 sm:pt-4 md:pt-6 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <InteractiveBackground />
 
       <!-- Sponsor Lockup -->
-      <div class="mx-auto mb-6 inline-flex max-w-full items-center gap-4 rounded-full border border-fest-border bg-white/90 px-4 py-3 text-left shadow-card backdrop-blur-xl sm:px-5">
+      <div class="mx-auto mb-4 inline-flex max-w-full flex-col items-center gap-2 rounded-2xl border border-fest-border bg-white/90 px-3 py-3 text-center shadow-card backdrop-blur-xl sm:flex-row sm:gap-4 sm:rounded-full sm:px-4 sm:text-left sm:py-3">
         <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-fest-cyan/15 bg-fest-surface text-fest-cyan shadow-sm">
           <span class="font-display text-lg font-bold">R</span>
         </div>
@@ -20,7 +20,7 @@
       </div>
 
       <!-- Headline (Fluid Typography) -->
-      <h1 class="hero-headline font-display font-bold text-fluid-hero tracking-tight mb-6">
+      <h1 class="hero-headline mb-4 font-display font-bold text-fluid-hero leading-none tracking-tight sm:mb-6">
         <span class="hero-outline inline-block">RUET</span>
         <span class="hero-solid inline-block mx-2 sm:mx-4">CSE</span>
         <span class="hero-outline inline-block">FEST</span>
@@ -28,12 +28,12 @@
       </h1>
 
       <!-- Tagline (Fluid Typography) -->
-      <p class="max-w-2xl mx-auto text-fluid-tagline text-fest-muted mb-10 leading-relaxed font-sans">
+      <p class="max-w-2xl mx-auto mb-8 font-sans text-fluid-tagline leading-relaxed text-fest-muted sm:mb-10">
         A week-long national stage for Bangladesh's sharpest programmers, hardware designers, and innovative builders.
       </p>
 
       <!-- Mini Terminal Card -->
-      <div class="mx-auto mb-8 w-full max-w-md rounded-xl border border-slate-800 bg-[#0B0F19] shadow-[0_8px_30px_rgba(11,15,25,0.28)] overflow-hidden text-left font-mono text-xs sm:text-sm">
+      <div class="mx-auto mb-6 w-full max-w-sm overflow-hidden rounded-xl border border-slate-800 bg-[#0B0F19] text-left font-mono text-xs shadow-[0_8px_30px_rgba(11,15,25,0.28)] sm:mb-8 sm:max-w-md sm:text-sm">
         <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-950 bg-[#161B2B]">
           <div class="flex space-x-1.5">
             <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></span>
@@ -65,13 +65,13 @@
       </div>
 
       <!-- Blinking cursor next to a short phrase for waiting for input -->
-      <div class="flex items-center justify-center gap-1.5 font-mono text-xs text-fest-cyan mb-10">
+      <div class="mb-8 flex flex-wrap items-center justify-center gap-1.5 px-2 text-center font-mono text-[11px] text-fest-cyan sm:mb-10 sm:text-xs">
         <span>$ awaiting connection: ping -c 1 ruet-cse-fest-2026</span>
         <span class="w-2 h-3.5 bg-fest-cyan animate-cursor-blink"></span>
       </div>
 
       <!-- Details Strip -->
-      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-12 text-sm font-mono text-fest-muted">
+      <div class="mb-10 flex flex-col items-center justify-center gap-3 text-center font-mono text-xs text-fest-muted sm:mb-12 sm:flex-row sm:flex-wrap sm:gap-8 sm:text-sm">
         <div class="flex items-center space-x-2">
           <svg class="w-4 h-4 text-fest-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
           <span>10 – 17 April 2026</span>
