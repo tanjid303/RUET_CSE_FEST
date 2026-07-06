@@ -33,8 +33,14 @@
       </p>
 
       <!-- Interactive Terminal -->
-      <div class="mx-auto mb-8 w-full max-w-sm sm:max-w-md">
+      <div class="mx-auto mb-4 w-full max-w-sm sm:max-w-md">
         <InteractiveTerminal />
+      </div>
+
+      <!-- Awaiting connection blinking line -->
+      <div class="mb-8 flex flex-wrap items-center justify-center gap-1.5 px-2 text-center font-mono text-[11px] text-fest-cyan sm:mb-10 sm:text-xs">
+        <span>$ awaiting connection: ping -c 1 ruet-cse-fest-2026</span>
+        <span class="w-2 h-3.5 bg-fest-cyan animate-cursor-blink"></span>
       </div>
 
       <!-- Details Strip -->

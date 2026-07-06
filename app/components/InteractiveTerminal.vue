@@ -51,7 +51,7 @@
     </div>
 
     <!-- Input row -->
-    <div v-if="!isBooting" class="flex items-center gap-2 px-4 py-2.5 border-t border-[#1E2536] bg-[#0E1320]">
+    <div class="flex items-center gap-2 px-4 py-2.5 border-t border-[#1E2536] bg-[#0E1320]">
       <span class="text-[#38BDF8] font-bold text-[11px] sm:text-[12.5px] flex-shrink-0">$</span>
       <div class="relative flex-1 overflow-hidden">
         <!-- Ghost autocomplete hint -->
@@ -66,7 +66,7 @@
           @keydown="handleKeydown"
           @input="handleInput"
           class="terminal-input w-full bg-transparent text-slate-200 outline-none caret-[#38BDF8] text-[11px] sm:text-[12.5px] leading-relaxed relative z-10"
-          placeholder=""
+          placeholder="type a command..."
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
@@ -74,12 +74,6 @@
         />
       </div>
       <span class="w-1.5 h-3.5 bg-[#38BDF8] animate-cursor-blink flex-shrink-0" v-if="inputValue === ''"></span>
-    </div>
-
-    <!-- Boot cursor line -->
-    <div v-if="isBooting" class="flex items-center gap-1.5 px-4 py-2.5 border-t border-[#1E2536] bg-[#0E1320]">
-      <span class="text-[#38BDF8] font-bold text-[11px] sm:text-[12.5px]">$</span>
-      <span class="w-1.5 h-3.5 bg-[#38BDF8] animate-cursor-blink"></span>
     </div>
   </div>
 </template>
@@ -111,7 +105,6 @@ const VALID_CMDS = COMMANDS.map(c => c.cmd)
 // ── State ──────────────────────────────────────────────────────────────────────
 const history     = ref([])
 const inputValue  = ref('')
-const isBooting   = ref(true)
 const selectedSuggestion = ref(-1)
 const inputEl  = ref(null)
 const outputEl = ref(null)
@@ -155,33 +148,15 @@ function clearTerminal() {
   push({ type: 'out', text: 'Terminal cleared.', color: 'text-slate-600' })
 }
 
-// ── Boot sequence ─────────────────────────────────────────────────────────────
-const BOOT_LINES = [
-  { delay: 0,    line: { type: 'cmd', text: 'ping -c 1 ruet-cse-fest-2026' } },
-  { delay: 380,  line: { type: 'out', text: 'PING ruet-cse-fest-2026 (10.42.0.1): 56 data bytes', color: 'text-slate-500' } },
-  { delay: 760,  line: { type: 'out', text: '64 bytes from 10.42.0.1: icmp_seq=0 ttl=64 time=0.42 ms', color: 'text-slate-500' } },
-  { delay: 1050, line: { type: 'out', text: '✓  1 packets transmitted, 1 received — 0% loss', color: 'text-[#27C93F] font-semibold' } },
-  { delay: 1400, line: { type: 'sep' } },
-  { delay: 1550, line: { type: 'cmd', text: 'ssh csefest@ruet.ac.bd -p 2026' } },
-  { delay: 2050, line: { type: 'out', text: 'Connected to RUET CSE FEST 2026 terminal.', color: 'text-[#38BDF8]' } },
-  { delay: 2300, line: { type: 'out', text: 'Welcome, visitor. Type help for available commands.', color: 'text-slate-400' } },
-  { delay: 2550, line: { type: 'sep' } },
-]
-
-onMounted(async () => {
-  isBooting.value = true
-  for (const step of BOOT_LINES) {
-    await delay(step.delay === 0 ? 200 : step.delay - (BOOT_LINES[BOOT_LINES.indexOf(step) - 1]?.delay ?? 0))
-    push(step.line)
-  }
-  isBooting.value = false
-  await nextTick()
-  focusInput()
+onMounted(() => {
+  // Initial welcome lines
+  history.value = [
+    { type: 'cmd', text: 'ssh csefest@ruet.ac.bd -p 2026' },
+    { type: 'out', text: 'Connected to RUET CSE FEST 2026 terminal.', color: 'text-[#38BDF8]' },
+    { type: 'out', text: 'Welcome, visitor. Type help for available commands.', color: 'text-slate-500' },
+  ]
+  nextTick(() => inputEl.value?.focus())
 })
-
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
 
 // ── Keyboard handling ─────────────────────────────────────────────────────────
 function handleKeydown(e) {
