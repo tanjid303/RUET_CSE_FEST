@@ -147,12 +147,16 @@ function scrollBottom() {
 }
 
 function focusInput() {
-  if (!isBooting.value) inputEl.value?.focus()
+  inputEl.value?.focus()
 }
 
 function clearTerminal() {
   history.value = []
   push({ type: 'out', text: 'Terminal cleared.', color: 'text-slate-600' })
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 onMounted(() => {
@@ -167,6 +171,11 @@ onMounted(() => {
 
 // Handle form submit (mobile Go button + desktop Enter via form)
 function handleSubmit() {
+  // Hide virtual keyboard on mobile after submit
+  if (window.innerWidth < 640) {
+    inputEl.value?.blur()
+  }
+
   if (selectedSuggestion.value >= 0 && suggestions.value[selectedSuggestion.value]) {
     const s = suggestions.value[selectedSuggestion.value]
     inputValue.value = s.cmd
