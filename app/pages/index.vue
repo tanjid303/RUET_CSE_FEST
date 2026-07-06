@@ -32,49 +32,16 @@
         A week-long national stage for Bangladesh's sharpest programmers, hardware designers, and innovative builders.
       </p>
 
-      <!-- Mini Terminal Card -->
-      <div class="mx-auto mb-6 w-full max-w-sm overflow-hidden rounded-xl border border-slate-800 bg-[#0B0F19] text-left font-mono text-xs shadow-[0_8px_30px_rgba(11,15,25,0.28)] sm:mb-8 sm:max-w-md sm:text-sm">
-        <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-950 bg-[#161B2B]">
-          <div class="flex space-x-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></span>
-          </div>
-          <span class="text-[10px] sm:text-xs text-slate-400 font-bold">bash - csefest@ruet</span>
-        </div>
-        <div class="p-4 space-y-2.5 text-slate-100">
-          <div class="flex items-center gap-2">
-            <span class="text-[#38BDF8] font-bold">$</span>
-            <span class="text-slate-200">npx csefest-2026 --status</span>
-          </div>
-          <div class="text-slate-400 pl-4">
-            Initializing competitive environment...
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-[#38BDF8] font-bold">$</span>
-            <span class="text-slate-200">npm run start-countdown</span>
-          </div>
-          <div class="text-[#38BDF8] pl-4 font-semibold">
-            &gt; Ready for input. Waiting for connection...
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-[#38BDF8] font-bold">$</span>
-            <span class="w-1.5 h-3.5 bg-[#38BDF8] animate-cursor-blink"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blinking cursor next to a short phrase for waiting for input -->
-      <div class="mb-8 flex flex-wrap items-center justify-center gap-1.5 px-2 text-center font-mono text-[11px] text-fest-cyan sm:mb-10 sm:text-xs">
-        <span>$ awaiting connection: ping -c 1 ruet-cse-fest-2026</span>
-        <span class="w-2 h-3.5 bg-fest-cyan animate-cursor-blink"></span>
+      <!-- Interactive Terminal -->
+      <div class="mx-auto mb-8 w-full max-w-sm sm:max-w-md">
+        <InteractiveTerminal />
       </div>
 
       <!-- Details Strip -->
       <div class="mb-10 flex flex-col items-center justify-center gap-3 text-center font-mono text-xs text-fest-muted sm:mb-12 sm:flex-row sm:flex-wrap sm:gap-8 sm:text-sm">
         <div class="flex items-center space-x-2">
           <svg class="w-4 h-4 text-fest-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-          <span>10 – 17 April 2026</span>
+          <span>Date — <span class="text-fest-amber font-bold">TBA</span></span>
         </div>
         <div class="hidden sm:block text-fest-border">•</div>
         <div class="flex items-center space-x-2">
@@ -158,36 +125,36 @@
           Total Prize Pool
         </h2>
         <div class="font-mono text-5xl sm:text-7xl font-extrabold text-fest-amber my-6">
-          550,000+ BDT
+          TBA
         </div>
         <p class="max-w-xl mx-auto text-sm sm:text-base text-fest-muted mb-8 leading-relaxed">
-          Distributed across major competitive tracks, featuring cash rewards, trophies, certificates, and potential sponsorship support for hardware projects.
+          Prize amounts are being finalized with our sponsors. Check back soon for the full prize breakdown across all competitive tracks.
         </p>
         
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-fest-border max-w-2xl mx-auto text-left font-mono">
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">IUPC</span>
-            <span class="text-sm font-bold text-fest-text">1,50,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">Hackathon</span>
-            <span class="text-sm font-bold text-fest-text">1,20,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">VLSI-thon</span>
-            <span class="text-sm font-bold text-fest-text">80,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">CTF</span>
-            <span class="text-sm font-bold text-fest-text">60,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">Datathon</span>
-            <span class="text-sm font-bold text-fest-text">50,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
           <div>
             <span class="text-[10px] text-fest-muted uppercase block mb-1">GameJam</span>
-            <span class="text-sm font-bold text-fest-text">50,000 BDT</span>
+            <span class="text-sm font-bold text-fest-amber">TBA</span>
           </div>
         </div>
       </div>
@@ -297,25 +264,25 @@ const phases = [
   {
     title: 'Registration Phase',
     desc: 'Teams and individuals from all across the nation sign up for their preferred competition tracks.',
-    date: 'February 15 – March 30, 2026'
+    date: 'Dates — TBA'
   },
   {
     title: 'National Arena (Fest Week)',
     desc: 'Intense programming battles, hackathon code-sprints, hardware prototyping, game design, and expert seminars.',
-    date: 'April 10 – April 17, 2026'
+    date: 'Dates — TBA'
   },
   {
     title: 'Closing Gala & Feast',
     desc: 'The official award ceremony honoring outstanding tech achievements, followed by a cultural rock concert.',
-    date: 'April 17, 2026'
+    date: 'Date — TBA'
   }
 ]
 
 const tiers = [
-  { name: 'Title Sponsor', slots: '1 Available', price: 'BDT 10,00,000' },
-  { name: 'Powered By', slots: '1 Available', price: 'BDT 8,00,000' },
-  { name: 'Gold Sponsor', slots: '2 Available', price: 'BDT 6,00,000' },
-  { name: 'Silver Sponsor', slots: '2 Available', price: 'BDT 3,00,000' }
+  { name: 'Title Sponsor', slots: '1 Available', price: 'TBA' },
+  { name: 'Powered By', slots: '1 Available', price: 'TBA' },
+  { name: 'Gold Sponsor', slots: '2 Available', price: 'TBA' },
+  { name: 'Silver Sponsor', slots: '2 Available', price: 'TBA' }
 ]
 
 useSeoMeta({

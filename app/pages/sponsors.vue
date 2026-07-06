@@ -45,7 +45,7 @@
               <span class="text-[10px] font-mono uppercase tracking-widest text-fest-muted block mb-2">{{ tier.slots }} slot available</span>
               <h3 class="font-display font-bold text-xl mb-4 text-fest-text">{{ tier.name }}</h3>
               <div class="font-mono text-2xl sm:text-3xl font-bold text-fest-amber mb-6">
-                {{ tier.price }} BDT
+                {{ tier.price === 'TBA' ? 'TBA' : tier.price + ' BDT' }}
               </div>
               <ul class="space-y-3 mb-8">
                 <li v-for="feature in tier.features" :key="feature" class="flex items-start space-x-2 text-xs sm:text-sm text-fest-muted">
@@ -101,7 +101,7 @@
           <div class="text-center sm:text-left space-y-2">
             <h3 class="font-display font-bold text-lg text-fest-text">Track & Event Sponsorships</h3>
             <p class="text-xs sm:text-sm text-fest-muted leading-relaxed">
-              Prefer a lower barrier of entry? Sponsor a specific competition (e.g. "IUPC presented by [Your Company]") starting from <strong class="text-fest-amber font-mono font-bold">2,00,000 BDT</strong>. This grants exclusive logo placement on that event's promotions and customized judging slots.
+              Prefer a lower barrier of entry? Sponsor a specific competition (e.g. "IUPC presented by [Your Company]"). Event-specific sponsorship pricing is <strong class="text-fest-amber font-mono font-bold">TBA</strong>. Contact us to discuss custom packages and exclusive track branding.
             </p>
           </div>
         </div>
@@ -176,11 +176,11 @@
                 v-model="form.tier"
                 class="form-input"
               >
-                <option value="title">Title Sponsor (10L BDT)</option>
-                <option value="powered_by">Powered By Sponsor (8L BDT)</option>
-                <option value="gold">Gold Sponsor (6L BDT)</option>
-                <option value="silver">Silver Sponsor (3L BDT)</option>
-                <option value="event">Event Specific (From 2L BDT)</option>
+                <option value="title">Title Sponsor (TBA)</option>
+                <option value="powered_by">Powered By Sponsor (TBA)</option>
+                <option value="gold">Gold Sponsor (TBA)</option>
+                <option value="silver">Silver Sponsor (TBA)</option>
+                <option value="event">Event Specific (TBA)</option>
                 <option value="other">Other / Custom</option>
               </select>
             </div>
@@ -239,8 +239,8 @@ const tiers = [
   {
     name: 'Title Sponsor',
     slots: '1',
-    price: '10,00,000',
-    color: '#0E7C86', // Teal
+    price: 'TBA',
+    color: '#0E7C86',
     features: [
       'Name baked into fest title',
       'Exclusive logo sizing (Hero)',
@@ -253,8 +253,8 @@ const tiers = [
   {
     name: 'Powered By',
     slots: '1',
-    price: '8,00,000',
-    color: '#C2760F', // Amber
+    price: 'TBA',
+    color: '#C2760F',
     features: [
       'Co-branding privileges',
       'Secondary logo sizing',
@@ -267,8 +267,8 @@ const tiers = [
   {
     name: 'Gold Sponsor',
     slots: '2',
-    price: '6,00,000',
-    color: '#64748B', // Muted Gray/Silver-ish
+    price: 'TBA',
+    color: '#64748B',
     features: [
       'Featured branding size',
       '1x Recruitment Stall',
@@ -280,8 +280,8 @@ const tiers = [
   {
     name: 'Silver Sponsor',
     slots: '2',
-    price: '3,00,000',
-    color: '#92400E', // Maroon
+    price: 'TBA',
+    color: '#92400E',
     features: [
       'Standard branding size',
       'Logos on website footer',
