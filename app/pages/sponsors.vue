@@ -176,10 +176,10 @@
                 v-model="form.tier"
                 class="form-input"
               >
-                <option value="title">Title Sponsor (TBA)</option>
-                <option value="powered_by">Powered By Sponsor (TBA)</option>
-                <option value="gold">Gold Sponsor (TBA)</option>
-                <option value="silver">Silver Sponsor (TBA)</option>
+                <option value="title">Title Sponsor (10,00,000)</option>
+                <option value="powered_by">Powered By Sponsor (8,00,000)</option>
+                <option value="gold">Gold Sponsor (6,00,000)</option>
+                <option value="silver">Silver Sponsor (3,00,000)</option>
                 <option value="event">Event Specific (TBA)</option>
                 <option value="other">Other / Custom</option>
               </select>
@@ -239,7 +239,7 @@ const tiers = [
   {
     name: 'Title Sponsor',
     slots: '1',
-    price: 'TBA',
+    price: '10,00,000',
     color: '#0E7C86',
     features: [
       'Name baked into fest title',
@@ -253,7 +253,7 @@ const tiers = [
   {
     name: 'Powered By',
     slots: '1',
-    price: 'TBA',
+    price: '8,00,000',
     color: '#C2760F',
     features: [
       'Co-branding privileges',
@@ -267,7 +267,7 @@ const tiers = [
   {
     name: 'Gold Sponsor',
     slots: '2',
-    price: 'TBA',
+    price: '6,00,000',
     color: '#64748B',
     features: [
       'Featured branding size',
@@ -280,7 +280,7 @@ const tiers = [
   {
     name: 'Silver Sponsor',
     slots: '2',
-    price: 'TBA',
+    price: '3,00,000',
     color: '#92400E',
     features: [
       'Standard branding size',

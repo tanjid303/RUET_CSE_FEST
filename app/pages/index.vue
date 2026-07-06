@@ -270,25 +270,25 @@ const phases = [
   {
     title: 'Registration Phase',
     desc: 'Teams and individuals from all across the nation sign up for their preferred competition tracks.',
-    date: 'Dates — TBA'
+    date: 'Dates — 1 October - 15 October 2026'
   },
   {
     title: 'National Arena (Fest Week)',
     desc: 'Intense programming battles, hackathon code-sprints, hardware prototyping, game design, and expert seminars.',
-    date: 'Dates — TBA'
+    date: 'Dates — 1 October - 15 October 2026'
   },
   {
     title: 'Closing Gala & Feast',
     desc: 'The official award ceremony honoring outstanding tech achievements, followed by a cultural rock concert.',
-    date: 'Date — TBA'
+    date: 'Date — 1 October - 15 October 2026'
   }
 ]
 
 const tiers = [
-  { name: 'Title Sponsor', slots: '1 Available', price: 'TBA' },
-  { name: 'Powered By', slots: '1 Available', price: 'TBA' },
-  { name: 'Gold Sponsor', slots: '2 Available', price: 'TBA' },
-  { name: 'Silver Sponsor', slots: '2 Available', price: 'TBA' }
+  { name: 'Title Sponsor', slots: '1 Available', price: '10,00,000' },
+  { name: 'Powered By', slots: '1 Available', price: '8,00,000' },
+  { name: 'Gold Sponsor', slots: '2 Available', price: '6,00,000' },
+  { name: 'Silver Sponsor', slots: '2 Available', price: '3,00,000' }
 ]
 
 useSeoMeta({
