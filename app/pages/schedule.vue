@@ -99,17 +99,24 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const selectedDate = ref('10.04.2026')
+const selectedDate = ref('01.10.2026')
 
 const scheduleDays = [
-  { label: 'Day 1', num: '10', month: 'April', dateStr: '10.04.2026' },
-  { label: 'Day 2', num: '11', month: 'April', dateStr: '11.04.2026' },
-  { label: 'Day 3', num: '12', month: 'April', dateStr: '12.04.2026' },
-  { label: 'Day 4', num: '13', month: 'April', dateStr: '13.04.2026' },
-  { label: 'Day 5', num: '14', month: 'April', dateStr: '14.04.2026' },
-  { label: 'Day 6', num: '15', month: 'April', dateStr: '15.04.2026' },
-  { label: 'Day 7', num: '16', month: 'April', dateStr: '16.04.2026' },
-  { label: 'Day 8', num: '17', month: 'April', dateStr: '17.04.2026' }
+  { label: 'Day 1', num: '1', month: 'October', dateStr: '01.10.2026' },
+  { label: 'Day 2', num: '2', month: 'October', dateStr: '02.10.2026' },
+  { label: 'Day 3', num: '3', month: 'October', dateStr: '03.10.2026' },
+  { label: 'Day 4', num: '4', month: 'October', dateStr: '04.10.2026' },
+  { label: 'Day 5', num: '5', month: 'October', dateStr: '05.10.2026' },
+  { label: 'Day 6', num: '6', month: 'October', dateStr: '06.10.2026' },
+  { label: 'Day 7', num: '7', month: 'October', dateStr: '07.10.2026' },
+  { label: 'Day 8', num: '8', month: 'October', dateStr: '08.10.2026' },
+  { label: 'Day 9', num: '9', month: 'October', dateStr: '09.10.2026' },
+  { label: 'Day 10', num: '10', month: 'October', dateStr: '10.10.2026' },
+  { label: 'Day 11', num: '11', month: 'October', dateStr: '11.10.2026' },
+  { label: 'Day 12', num: '12', month: 'October', dateStr: '12.10.2026' },
+  { label: 'Day 13', num: '13', month: 'October', dateStr: '13.10.2026' },
+  { label: 'Day 14', num: '14', month: 'October', dateStr: '14.10.2026' },
+  { label: 'Day 15', num: '15', month: 'October', dateStr: '15.10.2026' }
 ]
 
 const fullSchedule = [
