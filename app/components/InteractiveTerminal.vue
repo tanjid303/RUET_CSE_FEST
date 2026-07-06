@@ -51,7 +51,10 @@
     </div>
 
     <!-- Input row -->
-    <div class="flex items-center gap-2 px-4 py-2.5 border-t border-[#1E2536] bg-[#0E1320]">
+    <form
+      class="flex items-center gap-2 px-4 py-2.5 border-t border-[#1E2536] bg-[#0E1320]"
+      @submit.prevent="handleSubmit"
+    >
       <span class="text-[#38BDF8] font-bold text-[11px] sm:text-[12.5px] flex-shrink-0">$</span>
       <div class="relative flex-1 overflow-hidden">
         <!-- Ghost autocomplete hint -->
@@ -71,10 +74,14 @@
           autocorrect="off"
           autocapitalize="off"
           spellcheck="false"
+          inputmode="text"
+          enterkeyhint="go"
         />
       </div>
       <span class="w-1.5 h-3.5 bg-[#38BDF8] animate-cursor-blink flex-shrink-0" v-if="inputValue === ''"></span>
-    </div>
+      <!-- Hidden submit button so form submit works on mobile -->
+      <button type="submit" class="sr-only" aria-hidden="true">Go</button>
+    </form>
   </div>
 </template>
 
@@ -158,6 +165,18 @@ onMounted(() => {
   nextTick(() => inputEl.value?.focus())
 })
 
+// Handle form submit (mobile Go button + desktop Enter via form)
+function handleSubmit() {
+  if (selectedSuggestion.value >= 0 && suggestions.value[selectedSuggestion.value]) {
+    const s = suggestions.value[selectedSuggestion.value]
+    inputValue.value = s.cmd
+    selectedSuggestion.value = -1
+    nextTick(() => runCommand())
+  } else {
+    runCommand()
+  }
+}
+
 // ── Keyboard handling ─────────────────────────────────────────────────────────
 function handleKeydown(e) {
   // Tab → autocomplete
@@ -187,17 +206,10 @@ function handleKeydown(e) {
     return
   }
 
-  // Enter → select suggestion or run command
+  // Enter → handled by form @submit, but keep for desktop non-form scenarios
   if (e.key === 'Enter') {
     e.preventDefault()
-    if (selectedSuggestion.value >= 0 && suggestions.value[selectedSuggestion.value]) {
-      const s = suggestions.value[selectedSuggestion.value]
-      inputValue.value = s.cmd
-      selectedSuggestion.value = -1
-      nextTick(() => runCommand())
-    } else {
-      runCommand()
-    }
+    handleSubmit()
     return
   }
 
