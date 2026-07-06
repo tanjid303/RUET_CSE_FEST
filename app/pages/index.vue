@@ -5,11 +5,11 @@
     <div class="absolute top-[5%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-bl from-fest-amber/[0.05] to-transparent blur-[140px] pointer-events-none animate-aurora-amber"></div>
 
     <!-- Hero Section -->
-    <section class="relative z-10 overflow-hidden pt-2 pb-16 sm:pt-4 md:pt-6 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section class="relative z-10 overflow-hidden pt-10 pb-16 sm:pt-4 md:pt-6 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <InteractiveBackground />
 
-      <!-- Sponsor Lockup -->
-      <div class="mx-auto mb-4 inline-flex max-w-full flex-col items-center gap-2 rounded-2xl border border-fest-border bg-white/90 px-3 py-3 text-center shadow-card backdrop-blur-xl sm:flex-row sm:gap-4 sm:rounded-full sm:px-4 sm:text-left sm:py-3">
+      <!-- Sponsor Lockup (hidden on mobile) -->
+      <div class="hidden sm:inline-flex mx-auto mb-4 max-w-full flex-row items-center gap-4 rounded-full border border-fest-border bg-white/90 px-4 py-3 text-left shadow-card backdrop-blur-xl">
         <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-fest-cyan/15 bg-fest-surface text-fest-cyan shadow-sm">
           <span class="font-display text-lg font-bold">R</span>
         </div>
